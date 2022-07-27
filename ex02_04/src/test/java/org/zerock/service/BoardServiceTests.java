@@ -39,16 +39,20 @@ public class BoardServiceTests {
 
 	@Test
 	public void testDelete() {
+		BoardVO board = service.get(22L);
+		if (board == null) {
+			return;
+		}
 		log.info("DELETE RESULT: " + service.remove(22L));
 	}
 
 	@Test
 	public void testModify() {
-		BoardVO board = new BoardVO();
-		board.setBno(27L);
+		BoardVO board = service.get(27L);
+		if (board == null) {
+			return;
+		}
 		board.setTitle("제목변경이요이요");
-		board.setContent("내용변경이요이요");
-		board.setWriter("작성자변경이요");
 		log.info("MODIFY RESULT: " + service.modify(board));
 		log.info(board);
 	}
